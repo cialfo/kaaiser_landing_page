@@ -55,10 +55,10 @@
     ══════════════════════════════════════════ */
     .hero {
       position: relative;
+      z-index: 11; /* above stats-bar so arc overflow paints on top */
       width: 100%;
-      min-height: clamp(480px, 43vw, 620px);
+      min-height: clamp(460px, 40vw, 580px);
       background: linear-gradient(180deg, var(--green-lt) 0%, #fff 49.7%);
-      /* overflow-x clips the wide SVG background; overflow-y: visible lets man photo extend below */
       overflow-x: clip;
       overflow-y: visible;
     }
@@ -72,19 +72,19 @@
     }
     .hero-bg img {
       position: absolute;
-      left: -6.5%;      /* matches Figma -93px offset on 1434px container */
+      left: -6.5%;
       top: -1.2%;
       width: 113%;
-      height: 115%;
+      height: 106%; /* arc sits ~6% below hero bottom */
     }
 
     /* Sydney sketch overlay at 15% opacity */
     .hero-sketch {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 85%;
+      top: 0; left: 0; right: 0;
+      bottom: 0;
       background: url('assets/sydney-sketch.png') bottom center / cover no-repeat;
-      opacity: 0.13;
+      opacity: 0.16;
       z-index: 1;
       pointer-events: none;
     }
@@ -95,7 +95,7 @@
       z-index: 5;
       display: flex;
       align-items: flex-start;
-      min-height: clamp(480px, 43vw, 620px);
+      min-height: clamp(460px, 40vw, 580px);
       max-width: 1440px;
       margin: 0 auto;
       padding-left: 5.14%;
@@ -105,9 +105,9 @@
     /* Left column – text content */
     .hero-text-col {
       flex: 0 0 50%;
-      padding-top: clamp(120px, 12vw, 160px);
+      padding-top: clamp(100px, 10vw, 145px);
       padding-right: 40px;
-      padding-bottom: 60px;
+      padding-bottom: 32px;
     }
 
     .hero-eyebrow {
@@ -118,7 +118,7 @@
       font-weight: 400;
       font-size: clamp(13px, 1.3vw, 16px);
       color: var(--text-sub);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .hero-eyebrow svg { flex-shrink: 0; }
 
@@ -126,17 +126,17 @@
       font-family: 'Roboto', sans-serif;
       font-weight: 900;
       font-style: italic;
-      font-size: clamp(32px, 3.9vw, 56px);
+      font-size: clamp(30px, 3.6vw, 52px);
       color: var(--red);
       line-height: 1.15;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
     .hero-flowai {
       display: block;
-      height: clamp(52px, 5.9vw, 70px);
+      height: clamp(48px, 5.2vw, 64px);
       width: auto;
-      margin-bottom: 28px;
+      margin-bottom: 18px;
     }
 
     .hero-cta {
@@ -159,9 +159,8 @@
     .hero-photo-col {
       flex: 0 0 50%;
       position: relative;
-      min-height: clamp(480px, 43vw, 620px);
-      /* allow man image to extend below hero */
-      overflow: visible;
+      min-height: clamp(460px, 40vw, 580px);
+      overflow: hidden;
     }
 
     /* Decorative colour blocks – positions from Figma proportions */
@@ -170,10 +169,10 @@
       /* Figma: left 1059px in 1434px = 73.8%; within right col (50%): (73.8% - 50%) / 50% = 47.6% */
       left: 47.6%;
       top: 42.2%;   /* 305.79 / 724 */
-      width: 44.6%; /* 300.81 / 673 */
+      width: 34%;
       height: 0;
-      padding-bottom: 33.5%; /* 242.47 / 724 */
-      background: rgba(237, 28, 36, 0.40);
+      padding-bottom: 25%;
+      background: rgba(237, 28, 36, 0.28);
       border-radius: 25px;
       z-index: 2;
     }
@@ -211,7 +210,7 @@
       z-index: 10; /* above man photo overflow */
       background: linear-gradient(90deg, var(--green-lt) 0%, #fff 36%, #fff 68%, var(--green-lt) 100%);
       border-radius: 23px;
-      margin: clamp(16px, 2vw, 32px) auto;
+      margin: clamp(40px, 4.5vw, 64px) auto clamp(16px, 2vw, 28px);
       max-width: 1300px;
       width: calc(100% - 104px);
       padding: clamp(28px, 3vw, 44px) 32px;
